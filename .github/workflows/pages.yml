@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install open source browser libraries
-        run: npm install --legacy-peer-deps --no-audit --no-fund
+        run: npm install --ignore-scripts --legacy-peer-deps --no-audit --no-fund
       - name: Validate scripts
         run: npm run check
       - name: Assemble static site
