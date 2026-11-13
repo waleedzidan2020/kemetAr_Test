@@ -34,7 +34,7 @@ jobs:
           cp -r css/. _site/css/
           cp -r js/. _site/js/
           cp -r assets data targets _site/
-          cp node_modules/aframe/dist/aframe.min.js _site/vendor/
+          cp node_modules/aframe/dist/aframe-v1.5.0.min.js _site/vendor/aframe.min.js
           cp node_modules/mind-ar/dist/mindar-image-aframe.prod.js _site/vendor/
           cp node_modules/mind-ar/dist/mindar-image.prod.js _site/vendor/
           cp node_modules/mind-ar/dist/controller-*.js _site/vendor/
