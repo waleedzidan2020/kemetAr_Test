@@ -51,3 +51,17 @@ test('switching modes and changing opacity preserve the overlay',()=>{
   assert.equal(values.revealMode,0);
   controller.dispose();
 });
+
+test('switching image planes replays reveal on the active target',()=>{
+  let mode='instant';
+  const changesA=[],changesB=[];
+  const p1={setAttribute:(...args)=>changesA.push(args)};
+  const p2={setAttribute:(...args)=>changesB.push(args)};
+  const controller=createRevealController({getMode:()=>mode,getDuration:()=>3000,requestFrame:()=>1,cancelFrame:()=>{}});
+  controller.register(0,p1);controller.found(0);
+  controller.setPlane(0,p2);
+  assert.ok(changesB.some(([comp,key,v])=>comp==='material'&&key==='progress'&&v===1));
+  mode='fade';controller.setMode();
+  assert.ok(changesB.some(([comp,key,v])=>comp==='material'&&key==='progress'&&v===0));
+  controller.dispose();
+});

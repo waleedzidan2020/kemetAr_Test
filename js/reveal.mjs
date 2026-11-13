@@ -91,6 +91,12 @@ export function createRevealController({getMode, getDuration, requestFrame = req
       targets.set(index, t);
       reset(t);
     },
+    setPlane(index, plane) {
+      const t=targets.get(index);
+      if(!t||disposed||!plane)return;
+      cancel(t);t.plane=plane;
+      if(t.found)play(t);else reset(t);
+    },
     found(index) {
       const t = targets.get(index);
       if (!t || disposed || t.found) return;

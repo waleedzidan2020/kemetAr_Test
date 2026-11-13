@@ -85,3 +85,15 @@ When scanning a recognized target, use **ظهور التلوين** to choose:
 - **من اليمين للشمال (Wipe):** colors are uncovered progressively from right to left, with a feathered edge.
 
 The duration slider ranges from 1 to 8 seconds, and **إعادة العرض** restarts the effect while tracking a target. Choices are saved in browser local storage. Effect timing starts **only when a target is found**, is canceled on target loss, and restarts on reacquisition; the existing MindAR pose tracking stays unchanged. Any transparent PNG/SVG overlay supported by the app works with these effects. These modes do not add OpenCV or SLAM and do not generate new painted content: the existing Zamalek overlays primarily mark the shield's red lines.
+
+## Full Colored Image (Zamalek: 4 views)
+
+The live camera now has **نوع التلوين** with two options: **Logo Only** (existing four transparent SVG contours) and **Full Colored Image** (the four paper-only photographic overlays matched to the original photographs and `targetIndex` 0–3). The previously supplied colorized photos were perspective-aligned against the user’s original 720×1280 targets, clipped to the paper, resized/compressed to lightweight transparent WebP files, then mapped with `fullBounds` in `data/targets.json`.
+
+The 4 target mappings are:
+- 0: `zamalek-full-0.webp`, origin (241,408), size 245×334
+- 1: `zamalek-full-1.webp`, origin (282,292), size 199×473
+- 2: `zamalek-full-2.webp`, origin (308,304), size 264×411
+- 3: `zamalek-full-3.webp`, origin (200,284), size 363×534
+
+The page uses **separate target-anchored planes** for the full paper and logo-only, toggled without restarting MindAR. Both support instant / smooth fade / right-to-left wipe with duration and replay. The wall, fan, switches, and other surroundings remain live camera imagery; only the paper is overlaid. The colored photos are illustrative reconstructions, not official Zamalek logo assets. Alignment is calibrated from still images; it can require tuning after phone-camera tests.
