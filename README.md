@@ -76,3 +76,12 @@ No user-uploaded photos leave the browser when compiling, previewing, or downloa
 - [MindAR](https://github.com/hiukim/mind-ar-js) 1.2.5 (MIT)
 - [A-Frame](https://github.com/aframevr/aframe) 1.5.0 (MIT)
 - [JSZip](https://github.com/Stuk/jszip) 3.10.1 (MIT or GPLv3)
+
+## Progressive reveal animation (optional)
+
+When scanning a recognized target, use **ظهور التلوين** to choose:
+- **فوري (Instant):** original overlay behavior, no animation;
+- **تدريجي ناعم (Fade):** all painted pixels fade in smoothly;
+- **من اليمين للشمال (Wipe):** colors are uncovered progressively from right to left, with a feathered edge.
+
+The duration slider ranges from 1 to 8 seconds, and **إعادة العرض** restarts the effect while tracking a target. Choices are saved in browser local storage. Effect timing starts **only when a target is found**, is canceled on target loss, and restarts on reacquisition; the existing MindAR pose tracking stays unchanged. Any transparent PNG/SVG overlay supported by the app works with these effects. These modes do not add OpenCV or SLAM and do not generate new painted content: the existing Zamalek overlays primarily mark the shield's red lines.

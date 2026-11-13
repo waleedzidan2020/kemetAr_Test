@@ -29,7 +29,20 @@
 <div id="arStage" class="ar-stage"></div>
 <div class="viewer-top"><button id="closeViewer" class="tool-button" aria-label="إغلاق">✕</button><div class="viewer-brand">𓂀 <b>KEMET AR</b><small id="projectLabel">الوضع التجريبي</small></div><div class="live-pill"><span class="glow-dot"></span> LIVE AR</div></div>
 <div class="center-guide"><span class="guide-corner tl"></span><span class="guide-corner tr"></span><span class="guide-corner bl"></span><span class="guide-corner br"></span><span class="guide-text">وجّه الكاميرا نحو الصورة المرجعية</span></div>
-<div class="viewer-bottom"><div id="scanStatus" class="scan-status" role="status" aria-live="polite">تهيئة الكاميرا…</div><div class="controls"><button id="toggleColor" class="round-button" title="إظهار أو إخفاء اللون" aria-label="إظهار أو إخفاء اللون">◐</button><div class="slider-wrap"><span>الشفافية</span><input id="overlayOpacity" type="range" min="0" max="100" value="85" aria-label="قوة ألوان النقش"><output id="opacityLabel">85%</output></div><button id="fullScreen" class="round-button" title="ملء الشاشة" aria-label="ملء الشاشة">⛶</button></div></div>
+<div class="viewer-bottom"><div id="scanStatus" class="scan-status" role="status" aria-live="polite">تهيئة الكاميرا…</div>
+<div class="reveal-options" role="group" aria-label="طريقة ظهور الألوان">
+  <label class="reveal-field" for="revealMode"><span>ظهور التلوين</span>
+    <select id="revealMode" aria-label="اختار طريقة ظهور التلوين">
+      <option value="instant">فوري (الوضع الأصلي)</option>
+      <option value="fade">تدريجي ناعم (Fade)</option>
+      <option value="wipe">من اليمين للشمال (Reveal)</option>
+    </select>
+  </label>
+  <label class="reveal-field reveal-speed" id="revealDurationGroup" for="revealDuration"><span>مدة التأثير: <output id="revealDurationLabel">3 ثوانٍ</output></span>
+    <input id="revealDuration" type="range" min="1" max="8" step="0.5" value="3" aria-label="مدة ظهور الألوان بالثواني">
+  </label>
+  <button id="replayReveal" class="replay-button" type="button" title="إعادة عرض التلوين" aria-label="إعادة حركة ظهور التلوين">↻ إعادة العرض</button>
+</div><div class="controls"><button id="toggleColor" class="round-button" title="إظهار أو إخفاء اللون" aria-label="إظهار أو إخفاء اللون">◐</button><div class="slider-wrap"><span>الشفافية</span><input id="overlayOpacity" type="range" min="0" max="100" value="85" aria-label="قوة ألوان النقش"><output id="opacityLabel">85%</output></div><button id="fullScreen" class="round-button" title="ملء الشاشة" aria-label="ملء الشاشة">⛶</button></div></div>
 </div>
 <div id="dialog" class="dialog-layer" hidden><div class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialogTitle"><button id="dismissDialog" class="dialog-x" aria-label="إغلاق">×</button><div class="dialog-emblem">𓂀</div><h2 id="dialogTitle">معلومة</h2><p id="dialogText"></p><div id="dialogExtra"></div><button id="dialogOK" class="button primary">فهمت</button></div></div>
 <script type="module" src="./js/app.js"></script>
