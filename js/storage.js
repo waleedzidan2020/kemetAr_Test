@@ -1,0 +1,5 @@
+const NAME = 'kemet-ar-local'; const STORE='projects'; const VERSION=1;
+function db(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window))return reject(new Error('متصفحك لا يدعم حفظ التجارب المحلية')); const req=indexedDB.open(NAME,VERSION);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE)};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
+async function operate(mode,callback){const d=await db();return new Promise((resolve,reject)=>{const tx=d.transaction(STORE,mode),store=tx.objectStore(STORE);let value;let req;try{req=callback(store)}catch(err){d.close();reject(err);return}req.onsuccess=()=>{value=req.result};req.onerror=()=>reject(req.error);tx.oncomplete=()=>{d.close();resolve(value)};tx.onerror=()=>{d.close();reject(tx.error)};});}
+export const saveProject=(project)=>operate('readwrite',store=>store.put(project,'latest'));
+export const loadProject=()=>operate('readonly',store=>store.get('latest'));

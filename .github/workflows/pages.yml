@@ -1,0 +1,51 @@
+name: Deploy Kemet AR to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install open source browser libraries
+        run: npm install --legacy-peer-deps --no-audit --no-fund
+      - name: Validate scripts
+        run: npm run check
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/vendor _site/css _site/js
+          cp index.html studio.html manifest.webmanifest sw.js .nojekyll _site/
+          cp -r css/. _site/css/
+          cp -r js/. _site/js/
+          cp -r assets data targets _site/
+          cp node_modules/aframe/dist/aframe.min.js _site/vendor/
+          cp node_modules/mind-ar/dist/mindar-image-aframe.prod.js _site/vendor/
+          cp node_modules/mind-ar/dist/mindar-image.prod.js _site/vendor/
+          cp node_modules/mind-ar/dist/controller-*.js _site/vendor/
+          cp node_modules/mind-ar/dist/ui-*.js _site/vendor/
+          cp node_modules/jszip/dist/jszip.min.js _site/vendor/
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,13 @@
+{
+  "name": "Kemet AR — ألوان الحضارة المصرية",
+  "short_name": "Kemet AR",
+  "description": "تجربة واقع معزز لتصور ألوان النقوش المصرية القديمة",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101b1c",
+  "theme_color": "#101b1c",
+  "icons": [{"src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
+}

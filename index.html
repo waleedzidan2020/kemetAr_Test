@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111e22"><meta name="description" content="كيميت AR — اكتشف ألوان النقوش المصرية القديمة عبر كاميرا هاتفك.">
+<title>كيميت AR | ألوان الحضارة المصرية</title>
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="ambient"></div>
+<header class="header shell"><a class="brand" href="./index.html" aria-label="Kemet AR"><span class="brand-mark">𓂀</span><span><strong>KEMET <em>AR</em></strong><small>تراث ينبض بالألوان</small></span></a><nav aria-label="القائمة الرئيسية"><a class="active" href="./index.html">الرئيسية</a><a href="./studio.html">استوديو النقوش</a><a href="https://github.com/waleedzidan2020/kemetAr_Test" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+<main>
+<section class="hero shell">
+<div class="hero-copy"><div class="eyebrow"><span class="glow-dot"></span> تجربة واقع معزز مفتوحة المصدر <span class="line"></span> 100% على GitHub Pages</div>
+<h1>شاهد التاريخ<br><span>بألوانه من جديد.</span></h1>
+<p>وجّه كاميرا هاتفك نحو النقش، واكتشف تصورًا لطبقاته اللونية فوق الحجر الحقيقي. تجربة تعليمية تفاعلية، من المتصفح مباشرة وبدون تنزيل تطبيق.</p>
+<div class="hero-actions"><button id="liveButton" class="button primary"><span>◉</span> افتح كاميرا النقوش</button><button id="demoButton" class="button outline"><span>◈</span> جرّب نموذج العرض</button></div>
+<p class="demo-guide">للتجربة، افتح <a href="./assets/demo-target.svg" target="_blank" rel="noopener">اللوحة التجريبية</a> على شاشة ثانية أو اطبعها، ثم وجّه كاميرا هاتفك إليها.</p><div id="homeMessage" class="message" role="status" aria-live="polite"></div>
+<div class="trust-row"><span>✓ المعالجة على جهازك</span><span>✓ بدون تسجيل دخول</span><span>✓ مجاني ومفتوح المصدر</span></div>
+</div>
+<div class="showcase"><div class="showcase-header"><span>PREVIEW / 001</span><span>تجربة تفاعلية</span></div><div class="artifact-frame"><img src="./assets/demo-target.svg" alt="لوحة مصرية توضيحية صُممت للعرض التجريبي وليست أثرًا أصليًا"><div class="color-reveal"><img src="./assets/demo-color.svg" alt=""></div><div class="artifact-label">نموذج توضيحي غير أثري</div></div><div class="showcase-footer"><span>𓇳 𓊹 𓂀</span><span>DISCOVER · RESTORE · EXPLORE</span></div></div>
+</section>
+<section class="feature-area shell"><div class="section-title"><span class="overline">كيف تعمل التجربة؟</span><h2>ثلاث خطوات. نافذة على آلاف السنين.</h2></div><div class="features"><article class="feature"><div class="feature-icon">01 <b>◎</b></div><h3>تعرف على النقش</h3><p>ملف <code>targets.mind</code> يحتوي بصمات الصور التي تحددها أنت؛ يمكن تضمين عدة نقوش وزوايا.</p></article><article class="feature"><div class="feature-icon">02 <b>◫</b></div><h3>طبقة ألوان مطابقة</h3><p>ضع ملف PNG شفافًا مطابقًا للصورة المرجعية، ويتتبع موضعه مع حركة الكاميرا.</p></article><article class="feature"><div class="feature-icon">03 <b>✦</b></div><h3>أضف نقوشك بنفسك</h3><p>استوديو مجاني داخل الموقع يجهّز ملف التتبع وملفات النشر مباشرة من المتصفح.</p></article></div></section>
+<section class="studio-banner shell"><div><span class="overline">FOR CURATORS & CREATORS</span><h2>معاك صور النقوش والألوان؟</h2><p>اصنع تجربة خاصة بك. رتّب كل صورة مع التلوين المقابل لها، ثم جرّبها محليًا أو صدّرها للنشر.</p></div><a class="button primary" href="./studio.html">افتح استوديو النقوش ←</a></section>
+<footer class="footer shell"><span>© KEMET AR — نموذج تعليمي، الألوان ليست توثيقًا أثريًا دون مصدر متخصص.</span><span>Built for the web · GitHub Pages</span></footer>
+</main>
+<div id="viewer" class="viewer" hidden>
+<div id="arStage" class="ar-stage"></div>
+<div class="viewer-top"><button id="closeViewer" class="tool-button" aria-label="إغلاق">✕</button><div class="viewer-brand">𓂀 <b>KEMET AR</b><small id="projectLabel">الوضع التجريبي</small></div><div class="live-pill"><span class="glow-dot"></span> LIVE AR</div></div>
+<div class="center-guide"><span class="guide-corner tl"></span><span class="guide-corner tr"></span><span class="guide-corner bl"></span><span class="guide-corner br"></span><span class="guide-text">وجّه الكاميرا نحو الصورة المرجعية</span></div>
+<div class="viewer-bottom"><div id="scanStatus" class="scan-status" role="status" aria-live="polite">تهيئة الكاميرا…</div><div class="controls"><button id="toggleColor" class="round-button" title="إظهار أو إخفاء اللون" aria-label="إظهار أو إخفاء اللون">◐</button><div class="slider-wrap"><span>الشفافية</span><input id="overlayOpacity" type="range" min="0" max="100" value="85" aria-label="قوة ألوان النقش"><output id="opacityLabel">85%</output></div><button id="fullScreen" class="round-button" title="ملء الشاشة" aria-label="ملء الشاشة">⛶</button></div></div>
+</div>
+<div id="dialog" class="dialog-layer" hidden><div class="dialog-card" role="alertdialog" aria-modal="true" aria-labelledby="dialogTitle"><button id="dismissDialog" class="dialog-x" aria-label="إغلاق">×</button><div class="dialog-emblem">𓂀</div><h2 id="dialogTitle">معلومة</h2><p id="dialogText"></p><div id="dialogExtra"></div><button id="dialogOK" class="button primary">فهمت</button></div></div>
+<script type="module" src="./js/app.js"></script>
+</body></html>

@@ -1,3 +1,78 @@
-# Kemet AR
+# 𓂀 KEMET AR — Egyptian Relief Color AR
 
-Free, static, Arabic-first augmented-reality heritage coloring experience. Published on GitHub Pages. See the application and setup instructions after the initial commit.
+**Arabic-first, free, open-source-style, mobile-first augmented-reality coloring web app** deployed entirely on **GitHub Pages**, with no app server, no login, no analytics, and no paid APIs.
+
+**Repository:** https://github.com/waleedzidan2020/kemetAr_Test
+
+**Expected Pages URL after enabling deployment:** https://waleedzidan2020.github.io/kemetAr_Test/
+
+## What's implemented
+
+- Premium responsive Arabic/RTL landing page; camera AR scanner (MindAR + A-Frame) with detection status, adjustable overlay opacity, before/after toggle and fullscreen control.
+- Multiple image targets stored together in one `targets.mind` file, matched in order to a transparent image overlay for each target.
+- Tracking smoothing through MindAR's built-in One Euro filtering options (this is **not** full 3D SLAM).
+- Local **Studio** at `studio.html`: add pairs of reference + color overlay images, compile `targets.mind` in the browser, save a project in IndexedDB for local camera testing, or export a deploy-ready ZIP bundle with the compiled binary, overlays and JSON configuration.
+- Browser-compiled illustrative demo. **Demo artwork is newly drawn and is not an Egyptian archaeological artifact.** For the demo, show `assets/demo-target.svg` on another screen or print it, open the demo camera on your phone, then aim at the image.
+- PWA manifest and service worker. Runtime libraries (MindAR, A-Frame, JSZip) are **copied into the deployed GitHub Pages site** by the workflow; no runtime CDN is needed. All camera/video processing stays in the visitor's browser.
+
+## Publish this site on GitHub Pages
+
+1. Go to **Settings → Pages** for this repository.
+2. Under **Build and deployment**, choose **GitHub Actions** as Source.
+3. The workflow `.github/workflows/pages.yml` installs free libraries, checks JavaScript, assembles static files in `_site`, and deploys on each push to `main`.
+4. Check **Actions → Deploy Kemet AR to GitHub Pages** until it succeeds.
+5. Open https://waleedzidan2020.github.io/kemetAr_Test/.
+
+GitHub App access to repository files does not necessarily grant the ability to enable Pages in Settings. Only the repository owner can change that setting if not already enabled.
+
+## Add real reliefs / multiple photo angles
+
+1. Take a **clear, largely front-facing** photograph of a reasonably planar wall relief. For wider angles, add additional reference photos as **independent targets**; these do not become an automatic 3D model.
+2. Create a **transparent PNG** colored layer matching each reference photo **pixel-for-pixel in geometry** (not a second photograph with another perspective).
+3. Open the site's **استوديو النقوش** page. Add one row per target; optionally label each angle. Choose reference and color files, and click **تجهيز targets.mind**.
+4. Click **اختبر بالكاميرا** to save to your browser and open a local preview. This preview **does not publish files** or send them to GitHub.
+5. Click **تحميل ملفات النشر ZIP**, extract locally, then add/replace these files **in the repository**:
+
+```
+targets/targets.mind
+data/targets.json
+assets/overlays/0.png
+assets/overlays/1.png
+...
+```
+
+6. Commit them to `main`. GitHub Actions publishes the updated site; the home **افتح كاميرا النقوش** button will now open the published targets. A binary `.mind` cannot be represented as a plain text placeholder; it has to be generated from actual photos.
+
+Example configuration exported by Studio:
+
+```json
+{
+  "name": "Temple relief",
+  "mind": "targets/targets.mind",
+  "targets": [
+    {"title":"Front","width":1200,"height":900,"overlay":"assets/overlays/0.png"},
+    {"title":"Left angle","width":1200,"height":900,"overlay":"assets/overlays/1.png"}
+  ]
+}
+```
+
+**Caution:** AR image tracking is best for flat/mostly flat surfaces and reasonable angles. It can wobble or lose alignment under glare, low detail, fast motion and extreme oblique viewing. A real continuous 3D surface-anchored AR solution requires calibrated reconstruction/SLAM and compatible platform support; this repository is an operational **image-target AR foundation**, not a guaranteed 3D SLAM system.
+
+## Local development
+
+```bash
+npm install --legacy-peer-deps
+npm run check
+```
+
+For camera testing use a secure origin (GitHub Pages HTTPS). Localhost is acceptable for desktop testing; opening files directly with `file://` is not. Browser compiler needs WebGL and can be slow on older phones. Camera permission is required.
+
+## Privacy and cost
+
+No user-uploaded photos leave the browser when compiling, previewing, or downloading. The demo/target assets are fetched from GitHub Pages. GitHub Pages has applicable usage limits; the software does not charge fees. Art-historical colors should be reviewed by specialists before any authenticity claims.
+
+## Open-source dependencies
+
+- [MindAR](https://github.com/hiukim/mind-ar-js) 1.2.5 (MIT)
+- [A-Frame](https://github.com/aframevr/aframe) 1.5.0 (MIT)
+- [JSZip](https://github.com/Stuk/jszip) 3.10.1 (MIT or GPLv3)
