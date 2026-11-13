@@ -1,0 +1,57 @@
+name: One-time single-image target replacement
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/single-target-migration.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install MessagePack
+        run: python -m pip install --disable-pip-version-check msgpack==1.1.0
+      - name: Reconstruct the uploaded single-target file exactly
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import msgpack
+          p=Path("targets/targets.mind")
+          original=msgpack.unpackb(p.read_bytes(),raw=False)
+          if original.get("v")!=2 or "dataList" not in original:
+              raise RuntimeError("Unrecognized MindAR target file")
+          count=len(original["dataList"])
+          if count==4:
+              # Original front-facing image is targetIndex 3 in the previous 4-view export.
+              # Its tracking and matching data were binary-compared to targets2.mind.
+              rebuilt={"v":2,"dataList":[original["dataList"][3]]}
+              single=msgpack.packb(rebuilt,use_bin_type=True)
+          elif count==1:
+              single=p.read_bytes()
+          else:
+              raise RuntimeError("Expected original 4-image target or new 1-image target")
+          expected="6f367c1c009c8f18cc06d5ce8743aba96a8adb0c7f8c99e832392f2e65f2ae85"
+          actual=hashlib.sha256(single).hexdigest()
+          if actual!=expected:
+              raise RuntimeError("Single-target bytes do not match uploaded targets2.mind: "+actual)
+          p.write_bytes(single)
+          print("Verified exact uploaded targets2.mind",len(single),"bytes",actual)
+          PY
+      - name: Commit verified binary to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add targets/targets.mind
+          if git diff --cached --quiet; then
+            echo "The correct single-image binary already exists."
+          else
+            git commit -m "data: replace four-view mind with exact targets2 single view"
+            git push origin HEAD:main
+          fi
