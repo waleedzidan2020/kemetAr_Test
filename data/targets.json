@@ -1,5 +1,12 @@
 {
-  "name": "Kemet AR — في انتظار الهدف الجديد",
+  "name": "شعار الزمالك — هدف واحد (تلوين تدريجي)",
   "mind": "targets/targets.mind",
-  "targets": []
+  "targets": [
+    {
+      "title": "شعار الزمالك — صورة أمامية واحدة",
+      "width": 720,
+      "height": 1280,
+      "overlay": "assets/overlays/zamalek-single.svg"
+    }
+  ]
 }

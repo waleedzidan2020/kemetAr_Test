@@ -1,5 +1,3 @@
-# AR color overlays
+# Single-image color overlays
 
-There are currently **no published custom overlays**. All previous Zamalek reference color layers were deleted on request.
-
-When the new single-image target and its matching colored image are supplied, add the calibrated transparent overlay here and then update `data/targets.json` with **only targetIndex 0**. The old `targets/targets.mind` file is intentionally retained until the replacement is received.
+`zamalek-single.svg` is the only published custom overlay. It is 720×1280, aligned to `targets/targets.mind` targetIndex 0. The photograph's paper gets off-white coloring, its two shield contours and divider are bright red, and the original archer/Arabic lettering is enhanced in black. The rest of the camera view is fully transparent. This hand-aligned overlay may need small calibration adjustments after a real mobile-camera test.

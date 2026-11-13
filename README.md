@@ -1,33 +1,16 @@
-# Kemet AR
+# KEMET AR — Single Image Zamalek Demo
 
-Free, static Arabic-first augmented reality color-overlay experience hosted on GitHub Pages.
+Static augmented reality hosted at https://waleedzidan2020.github.io/kemetAr_Test/ with no paid APIs.
 
-- **Live site:** https://waleedzidan2020.github.io/kemetAr_Test/
-- **Studio:** https://waleedzidan2020.github.io/kemetAr_Test/studio.html
+## Current published setup
 
-## Current project state
+- **One** MindAR image target: `targets/targets.mind`, 720 × 1280, targetIndex 0.
+- The committed `.mind` is **byte-identical** to the user's uploaded `targets2.mind` (SHA256 `6f367c1c009c8f18cc06d5ce8743aba96a8adb0c7f8c99e832392f2e65f2ae85`).
+- One transparent SVG color layer: `assets/overlays/zamalek-single.svg`.
+- The viewer includes instant, smooth Fade, and right-to-left Reveal modes, duration 1–8 seconds, replay, and opacity. Default opacity is 100%.
+- The paper, red double shield, hand-drawn archer and Arabic writing remain anchored to the original photograph's pixel coordinates. The surrounding wall, fan and switches remain visible via the live camera, not a frozen replacement photo.
+- A separate self-contained illustrative camera demo and the optional target compiler studio remain available.
 
-The previous Zamalek color overlays (four SVG logo layers and four WebP full-paper layers) have been **removed from the current branch**, along with their live AR mappings and the obsolete full/logo selection.
+## Deployment
 
-`data/targets.json` has **zero published image targets** so the live AR button will inform visitors that a new target is needed instead of attempting to load removed images. The previously uploaded four-angle `targets/targets.mind` binary remains in the repository **only until the user supplies the new one-image replacement**. It is not used in published AR while the target array is empty.
-
-The sample illustrative demo uses `assets/demo-target.svg` and `assets/demo-color.svg`, which are independent of the removed real-photo Zamalek assets. The viewer still supports instant display, smooth fade-in, right-to-left reveal, duration 1–8 seconds, replay, opacity controls, and camera tracking with MindAR.
-
-## Publish the new single-image experiment
-
-1. Supply the new one-target `targets.mind` binary and its original/colored source images.
-2. Replace `targets/targets.mind` (do not use the old four-view file).
-3. Align an overlay with the one source photo. Add it to `assets/overlays/`.
-4. Change `data/targets.json` to a single target entry with the correct dimensions, title, and overlay path.
-5. Commit to `main`; `.github/workflows/pages.yml` deploys the static site with GitHub Actions.
-
-All processing is browser-side. No backend or paid API is required. GitHub Pages has normal plan usage limits.
-
-## Development
-
-```bash
-npm install --legacy-peer-deps
-npm run check
-```
-
-MindAR, A-Frame and JSZip are bundled in the deployment to serve without third-party runtime CDNs.
+GitHub Actions `.github/workflows/pages.yml` deploys the site on pushes to `main`. The one-time migration workflow extracted the original fourth target from the previous four-target file, verified the resulting binary's exact checksum against `targets2.mind`, and committed it. No runtime reconstruction is needed. Camera operation and physical registration still require validation on a mobile device.
