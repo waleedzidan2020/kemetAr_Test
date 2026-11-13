@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280" aria-label="طبقة التلوين الشفافة لشعار الزمالك، هدف 1">
+<!-- Transparent image-aligned AR overlay: only the original hand-drawn red shield and its dividing bar are colorized.
+     No wall or non-logo pixels are covered. Pixel registration uses the exact original 720x1280 view.
+     Review outline positions visually in-camera; these are preliminary calibrations from the supplied photographs. -->
+<g fill="none" stroke="#e21b2e" stroke-linecap="round" stroke-linejoin="round" opacity=".94">
+<path d="M368 362 C388 393 417 415 447 420 C446 532 444 621 431 660 Q415 699 384 733 C347 693 309 610 300 433 C336 411 355 388 368 362 Z" stroke-width="4"/>
+<path d="M368 382 C388 414 414 426 436 430 C435 537 431 620 421 657 Q403 694 384 715 C350 669 319 597 311 442 C339 423 359 403 368 382 Z" stroke-width="3.5"/>
+<path d="M315 574 Q362 573 419 593 M316 581 Q365 582 416 599" stroke-width="3.2"/>
+</g>
+</svg>

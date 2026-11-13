@@ -1,5 +1,30 @@
 {
-  "name": "نقوش كيميت",
+  "name": "تجربة شعار الزمالك — أربع زوايا",
   "mind": "targets/targets.mind",
-  "targets": []
+  "targets": [
+    {
+      "title": "شعار الزمالك — منظر بعيد",
+      "width": 720,
+      "height": 1280,
+      "overlay": "assets/overlays/zamalek-0.svg"
+    },
+    {
+      "title": "شعار الزمالك — منظور جانبي",
+      "width": 720,
+      "height": 1280,
+      "overlay": "assets/overlays/zamalek-1.svg"
+    },
+    {
+      "title": "شعار الزمالك — من اليمين",
+      "width": 720,
+      "height": 1280,
+      "overlay": "assets/overlays/zamalek-2.svg"
+    },
+    {
+      "title": "شعار الزمالك — منظر أمامي",
+      "width": 720,
+      "height": 1280,
+      "overlay": "assets/overlays/zamalek-3.svg"
+    }
+  ]
 }
